@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../img/cool-wallpapers-for-boys-2019-25.jpg');
+    min-height: 100vh;
+    background-position: center;
+    background-size: cover;
+}
+#clock #time, #clock2 #time, #clock2 .option{
+    display: flex;
+}
+#clock #time div, #clock2 #time div{
+    position: relative;
+    margin: 0 5px;
+    -webkit-box-reflect: below 1px linear-gradient(transparent,#0004);
+}
+#clock2 .option div{
+    position: relative;
+    margin: 0 5px;
+}
+#clock .option div, #clock2 .option div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#clock .option div button, #clock2 .option div button{
+    width: auto;
+    height: 40px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .2);
+}
+#clock .option div button span, #clock2 .option div button span{
+    text-transform: uppercase;
+    color: #000;
+    font-size: 1rem;
+    text-decoration: none;
+    padding: 12px;
+}
+#clock #time div span, #clock2 #time div span{
+    position: relative;
+    display: block;
+    width: 100px;
+    height: 80px;
+    color: #fff;
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    z-index: 10;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .2);
+    text-shadow: 2px 2px 2px black;
+}
+#clock #time div span:nth-child(2), #clock2 #time div span:nth-child(2){
+    height: 30px;
+    font-size: 0.7rem;
+    letter-spacing: 0.2rem;
+    font-weight: 500;
+    z-index: 9;
+    box-shadow: none;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 2px black;
+}
+#clock #time div:nth-last-child(1) span, #clock2 #time div:nth-last-child(1) span{
+    position: absolute;
+    bottom: 0;
+    width: 60px;
+    height: 40px;
+    font-size: 1.5rem;
+    background: linear-gradient(black, gray);
+    color: #fff;
+    -webkit-box-reflect: below 1px linear-gradient(transparent,#0004);
+    text-shadow: none;
+    text-transform: uppercase;
+}
+#clock2 #time div:nth-last-child(1) span{
+    position: absolute;
+    bottom: 0;
+    width: 100px;
+    height: 40px;
+    font-size: 1rem;
+    background: linear-gradient(black, gray);
+    color: #fff;
+    -webkit-box-reflect: below 1px linear-gradient(transparent,#0004);
+    text-shadow: none;
+    text-transform: uppercase;
+}
