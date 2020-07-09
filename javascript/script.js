@@ -58,13 +58,35 @@ function clock(){
 //  --------------------------------------------------------------
 $(document).ready(function(){
     $("#clock").hide(); // thêm dòng này để nội dung trong thẻ p ẩn lúc đầu
-     
+    $("#clock3").hide(); 
     $("#bamgio").click(function(){
         $("#clock").hide();
+        $("#clock3").hide();
+        $("#clock2").show();
+    });
+    $("#bamgio1").click(function(){
+        $("#clock").hide();
+        $("#clock3").hide();
         $("#clock2").show();
     });
     $("#xemgio").click(function(){
         $("#clock").show();
+        $("#clock2").hide();
+        $("#clock3").hide();
+    });
+    $("#xemgio1").click(function(){
+        $("#clock").show();
+        $("#clock2").hide();
+        $("#clock3").hide();
+    });
+    $("#demnguoc").click(function(){
+        $("#clock3").show();
+        $("#clock").hide();
+        $("#clock2").hide();
+    });
+    $("#demnguoc1").click(function(){
+        $("#clock3").show();
+        $("#clock").hide();
         $("#clock2").hide();
     });
 });
@@ -91,6 +113,9 @@ function start(){
     if(second==60){
         second=0;
         minute++;
+        if(minute < 10) {
+            minute = "0" + minute;
+        }
     }
 }
 function stop(){
@@ -98,4 +123,108 @@ function stop(){
 }
 function reset(){
     window.location.reload();
+}
+var h = null; // Giờ
+var m = null; // Phút
+var s = null; // Giây
+             
+var timeout = null; // Timeout
+             
+function start2() {
+    $('#hour2').hide();
+    $('#minute2').hide();
+    $('#second2').hide();
+    $('#hour2-start').show();
+    $('#minute2-start').show();
+    $('#second2-start').show();
+
+    /*BƯỚC 1: LẤY GIÁ TRỊ BAN ĐẦU*/
+    if (h === null)
+    {
+        h = parseInt(document.getElementById('hour2').innerHTML);
+        m = parseInt(document.getElementById('minute2').innerHTML);
+        s = parseInt(document.getElementById('second2').innerHTML);
+        if(h < 10) {
+            h = "0" + h;
+        }
+        if(m < 10) {
+            m = "0" + m;
+        }
+    }
+ 
+    /*BƯỚC 1: CHUYỂN ĐỔI DỮ LIỆU*/
+    // Nếu số giây = -1 tức là đã chạy ngược hết số giây, lúc này:
+    //  - giảm số phút xuống 1 đơn vị
+    //  - thiết lập số giây lại 59
+    if (s === -1){
+        m -= 1;
+        if(m < 10 && m > -1) {
+            m = "0" + m;
+        }
+        s = 59;
+    }
+ 
+    // Nếu số phút = -1 tức là đã chạy ngược hết số phút, lúc này:
+    //  - giảm số giờ xuống 1 đơn vị
+    //  - thiết lập số phút lại 59
+    if (m === -1){
+        h -= 1;
+        if(h < 10 && h > -1) {
+            h = "0" + h;
+        }
+        m = 59;
+    }
+ 
+    // Nếu số giờ = -1 tức là đã hết giờ, lúc này:
+    //  - Dừng chương trình
+    if (h == -1){
+        clearTimeout(timeout);
+        alert('Hết giờ');
+        window.location.reload();
+        return false;
+    }
+    if(s < 10 && s > -1) {
+        s = "0" + s;
+    }
+ 
+    /*BƯỚC 1: HIỂN THỊ ĐỒNG HỒ*/
+    document.getElementById('hour2-start').innerText = h.toString();
+    document.getElementById('minute2-start').innerText = m.toString();
+    document.getElementById('second2-start').innerText = s.toString();
+ 
+    /*BƯỚC 1: GIẢM PHÚT XUỐNG 1 GIÂY VÀ GỌI LẠI SAU 1 GIÂY */
+    timeout = setTimeout(function(){
+        s--;
+        start2();
+    }, 1000);
+}        
+function stop2(){
+    clearTimeout(timeout);
+}
+function selectHour(){
+    var x = document.getElementById('selectHour');
+    var h = x.options[x.selectedIndex].value;
+    document.getElementById('selectHour').style.display = "none";
+    if(h < 10) {
+        h = "0" + h;
+    }
+    document.getElementById('hour2').innerHTML = h;
+}
+function selectMinute(){
+    var x = document.getElementById('selectMinute');
+    var m = x.options[x.selectedIndex].value;
+    document.getElementById('selectMinute').style.display = "none";
+    if(m < 10) {
+        m = "0" + m;
+    }
+    document.getElementById('minute2').innerHTML = m;
+}
+function selectSecond(){
+    var x = document.getElementById('selectSecond');
+    var s = x.options[x.selectedIndex].value;
+    document.getElementById('selectSecond').style.display = "none";
+    if(s < 10) {
+        s = "0" + s;
+    }
+    document.getElementById('second2').innerHTML = s;
 }
